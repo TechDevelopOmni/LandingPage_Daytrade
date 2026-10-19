@@ -1,0 +1,309 @@
+.section {
+    width: 100%;
+    padding: 70px 18px;
+    background: #ffffff;
+}
+
+/* Container principal */
+
+.container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+/* Banner */
+
+.banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 333px;
+    padding: 60px 52px;
+
+    background: #091c08;
+    border-radius: 14px;
+}
+
+/* Conteúdo */
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+}
+
+/* Título */
+
+.title {
+    max-width: 720px;
+    margin: 0 0 34px;
+
+    color: #a5a99d;
+    font-size: clamp(26px, 2.8vw, 37px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.highlight {
+    color: #f5f8f2;
+}
+
+/* Botões */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 49px;
+    padding: 10px 18px;
+
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background-color 200ms ease,
+        transform 200ms ease,
+        border-color 200ms ease;
+}
+
+/* Botão principal */
+
+.primaryButton {
+    color: #10200d;
+    background: #a9e797;
+    border: 1px solid #a9e797;
+}
+
+.primaryButton:hover {
+    background: #c0f2ae;
+    transform: translateY(-2px);
+}
+
+/* Botão secundário */
+
+.secondaryButton {
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid #63705e;
+}
+
+.secondaryButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+/* Indicadores dos botões */
+
+.key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 27px;
+    height: 27px;
+
+    border: 1px solid currentColor;
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.6;
+}
+
+/* Texto inferior */
+
+.note {
+    margin: 19px 0 0;
+
+    color: #949d8d;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* =====================================
+   DECORAÇÃO PIXELADA
+===================================== */
+
+.pixelArt {
+    position: absolute;
+    z-index: 1;
+
+    right: 0;
+    bottom: 0;
+
+    display: grid;
+    grid-template-columns: repeat(60, 6px);
+    grid-auto-rows: 6px;
+    gap: 4px;
+
+    width: max-content;
+    height: max-content;
+
+    transform: none;
+    pointer-events: none;
+}
+
+.pixel {
+    width: 6px;
+    height: 6px;
+
+    background: #b4f5a8;
+    opacity: 0;
+}
+
+/* Pixels visíveis */
+
+.pixelVisible {
+    animation: pixelGlow 4s ease-in-out infinite alternate;
+}
+
+/* Animação suave */
+
+@keyframes pixelGlow {
+    0% {
+        filter: brightness(0.85);
+    }
+
+    100% {
+        filter: brightness(1.15);
+    }
+}
+
+/* =====================================
+   RESPONSIVIDADE - TABLET
+===================================== */
+
+@media (max-width: 1023px) {
+    .section {
+        padding: 60px 18px;
+    }
+
+    .banner {
+        padding: 55px 40px;
+    }
+
+    .content {
+        max-width: 620px;
+    }
+
+    .title {
+        font-size: clamp(26px, 3.5vw, 34px);
+    }
+
+    .pixelArt {
+        right: -40px;
+        bottom: 0;
+
+        transform: translateY(-50px) scale(0.85);
+        transform-origin: bottom right;
+
+        opacity: 0.6;
+    }
+}
+
+/* =====================================
+   RESPONSIVIDADE - MOBILE
+===================================== */
+
+@media (max-width: 767px) {
+    .section {
+        padding: 45px 14px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .banner {
+        min-height: 420px;
+        padding: 35px 25px 130px;
+        border-radius: 12px;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: clamp(25px, 6vw, 32px);
+        line-height: 1.25;
+        margin-bottom: 28px;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        min-height: 46px;
+        padding: 9px 13px;
+        font-size: 13px;
+    }
+
+    .key {
+        width: 23px;
+        height: 23px;
+        font-size: 12px;
+    }
+
+    .note {
+        margin-top: 16px;
+        font-size: 12px;
+    }
+
+    /* Pixels no Mobile */
+
+    .pixelArt {
+        right: -80px;
+        bottom: 0;
+
+        transform: translateY(-35px) scale(0.75);
+        transform-origin: bottom right;
+
+        opacity: 0.8;
+    }
+}
+
+/* =====================================
+   ACESSIBILIDADE
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .pixelVisible {
+        animation: none;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        transition: none;
+    }
+
+    .primaryButton:hover,
+    .secondaryButton:hover {
+        transform: none;
+    }
+}

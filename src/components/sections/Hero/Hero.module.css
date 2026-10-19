@@ -1,0 +1,481 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  max-width: 1600px;
+  height: 100svh;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.backgroundImage {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+.baseOverlay,
+.directionalOverlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
+.baseOverlay {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.directionalOverlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2), transparent);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1720px;
+  box-sizing: border-box;
+  align-items: center;
+  padding: clamp(6rem, 13vh, 9rem) clamp(1.25rem, 4vw, 3.5rem) 9.5rem;
+  margin: 0 auto;
+}
+
+.contentInner {
+  max-width: none;
+  margin-left: clamp(0.75rem, 1.5vw, 1.5rem);
+  transform: translateY(32px);
+}
+
+.compliance {
+  display: inline-flex;
+  margin-bottom: 34px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.compliance:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.compliance:focus-visible,
+.button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 92px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 22px;
+  max-width: 775px;
+}
+
+.lede {
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .88);
+  max-width: 375px;
+  margin: 0 0 36px;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  background: #fff;
+  color: #0b0b0b;
+}
+
+.button:hover {
+  background: #f4f4f4;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.icon {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.arrowIcon {
+  display: none;
+}
+
+.button:hover .chevronIcon,
+.button:focus-visible .chevronIcon {
+  display: none;
+}
+
+.button:hover .arrowIcon,
+.button:focus-visible .arrowIcon {
+  display: inline-flex;
+}
+
+.ctaNote {
+  font-size: 13px;
+  color: rgba(255, 255, 255, .65);
+  margin-left: 4px;
+}
+
+.trusted {
+  margin: 4rem 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.customerCarousel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 94px;
+  padding: 0 100px;
+  overflow: hidden;
+  background: rgba(5, 5, 5, 0.58);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.logoViewport {
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 4%,
+    #000 94%,
+    transparent
+  );
+}
+
+.logoTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logo-marquee 26s linear infinite;
+}
+
+.logoSequence {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding-right: 48px;
+}
+
+.logo {
+  display: inline-flex;
+  box-sizing: border-box;
+  flex: 0 0 170px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.83);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.doordash {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.bcg {
+  position: relative;
+  padding-right: 47px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  text-align: center;
+}
+
+.bcg::after {
+  content: "BOSTON\A CONSULTING\A GROUP";
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  text-align: left;
+  white-space: pre;
+}
+
+.village {
+  position: relative;
+  padding-bottom: 8px;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.village::after {
+  content: "GLOBAL";
+  position: absolute;
+  right: 9px;
+  bottom: -1px;
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.tesi {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.brevo {
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.railway {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.yuno {
+  font-size: 45px;
+  font-weight: 800;
+}
+
+.mistral {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.customersLink {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 134.84px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.customersLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+.customersLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.reviewScore {
+  position: absolute;
+  right: 100px;
+  bottom: 119px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stars {
+  color: #ff7a1a;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.reviewDivider {
+  width: 1px;
+  height: 18px;
+  margin: 0 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.reviewBadge {
+  display: inline-flex;
+  width: 19px;
+  height: 19px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.38);
+  color: rgba(20, 20, 20, 0.85);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+@keyframes logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .backgroundImage {
+    object-position: center;
+  }
+
+  .content {
+    align-items: flex-end;
+    padding-bottom: 7.25rem;
+  }
+
+  .contentInner {
+    transform: translateY(22px);
+  }
+
+  .customerCarousel {
+    bottom: 0;
+  }
+
+  .reviewScore {
+    bottom: 131px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    padding-top: clamp(7rem, 15vh, 10rem);
+  }
+}
+
+@media (max-width: 1023px) {
+  .title {
+    font-size: clamp(3.75rem, 8vw, 5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .contentInner {
+    transform: translateY(6px);
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 16vw, 5rem);
+    white-space: normal;
+  }
+
+  .content {
+    padding: 6.25rem 1.25rem 6.5rem;
+  }
+
+  .lede {
+    max-width: 100%;
+    font-size: 1.25rem;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .trusted {
+    margin-top: 1.25rem;
+  }
+
+  .customerCarousel {
+    bottom: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    min-height: 76px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    flex-basis: 128px;
+    font-size: 20px;
+  }
+
+  .logoSequence {
+    gap: 28px;
+    padding-right: 28px;
+  }
+
+  .bcg {
+    padding-right: 35px;
+    font-size: 33px;
+  }
+
+  .bcg::after {
+    right: 1px;
+    font-size: 6px;
+  }
+
+  .tesi,
+  .brevo {
+    font-size: 26px;
+  }
+
+  .yuno {
+    font-size: 32px;
+  }
+
+  .customersLink {
+    font-size: 12px;
+    justify-self: end;
+  }
+
+  .reviewScore {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoTrack {
+    animation: none;
+  }
+}
