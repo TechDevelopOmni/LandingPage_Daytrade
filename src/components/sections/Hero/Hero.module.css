@@ -214,9 +214,9 @@
 
 .logoImage {
   display: block;
-  width: 100%;
-  height: auto;
-  max-height: 42px;
+  width: auto;
+  height: 42px;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -240,6 +240,10 @@
 
 .rendimento {
   flex-basis: 118px;
+}
+
+.rendimento .logoImage {
+  filter: invert(1);
 }
 
 .doordash {

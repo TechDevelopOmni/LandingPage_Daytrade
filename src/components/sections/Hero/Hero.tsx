@@ -15,25 +15,25 @@ const customerLogos: CustomerLogo[] = [
     name: "WBA",
     label: "WBA",
     style: "wba",
-    src: "/images/logos/WBA.png",
+    src: "/images/logos/wba_software_240x80.png",
   },
   {
     name: "DTI",
     label: "DTI",
     style: "dti",
-    src: "/images/logos/DTI.png",
+    src: "/images/logos/dti_240x80.png",
   },
   {
     name: "CRDC",
     label: "CRDC",
     style: "crdc",
-    src: "/images/logos/CRDC.png",
+    src: "/images/logos/crdc_240x80.png",
   },
   {
     name: "Rendimento",
     label: "Rendimento",
     style: "rendimento",
-    src: "/images/logos/Rendimento.png",
+    src: "/images/logos/rendimento-preto.png",
   },
 ];
 

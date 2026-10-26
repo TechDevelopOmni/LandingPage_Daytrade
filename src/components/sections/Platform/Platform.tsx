@@ -60,14 +60,9 @@ export function Features() {
     >
       <div className={styles.container}>
         <div className={styles.header}>
-          <span className={styles.badge}>Platform</span>
-
-          <h2 id="features-title" className={styles.title}>
-            Something new!
-          </h2>
-
+          <span className={styles.badge}>Produtos e Serviços</span>
           <p className={styles.subtitle}>
-            Managing a small business today is already tough.
+            Como a DayTrade pode te ajudar hoje?
           </p>
         </div>
 

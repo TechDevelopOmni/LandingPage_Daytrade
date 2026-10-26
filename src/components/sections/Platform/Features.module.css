@@ -36,7 +36,7 @@
   padding: 5px 14px;
   border-radius: 999px;
 
-  background: #0f172a;
+  background: #00213D;
   color: #ffffff;
 
   font-size: 14px;
@@ -138,8 +138,9 @@
 
 .productsLink {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   width: fit-content;
   margin: 32px auto 0;
   color: #0b1225;
@@ -151,11 +152,12 @@
 
 .productsLink svg {
   flex: none;
+  transform: rotate(90deg);
   transition: transform 180ms ease;
 }
 
 .productsLink:hover svg {
-  transform: translateX(4px);
+  transform: translateY(4px) rotate(90deg);
 }
 
 .productsLink:focus-visible {
@@ -168,17 +170,19 @@
     display: flex;
     align-items: center;
     min-height: 100svh;
-    padding: 40px 0;
+    padding: 16px 0 116px;
   }
 
   .container {
     display: flex;
     flex-direction: column;
-    min-height: calc(100svh - 80px);
+    min-height: calc(100svh - 40px);
+    padding-right: 64px;
+    padding-left: 64px;
   }
 
   .header {
-    margin-bottom: 28px;
+    margin-bottom: 12px;
   }
 
   .grid {
@@ -189,11 +193,15 @@
 
   .card {
     min-height: 0;
-    padding: 26px 30px;
+    padding: 30px 32px;
   }
 
   .productsLink {
-    margin-top: 22px;
+    position: absolute;
+    top: calc(100% + 44px);
+    left: 50%;
+    margin: 0;
+    transform: translateX(-50%);
   }
 }
 
