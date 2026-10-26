@@ -4,30 +4,30 @@ import styles from "./Features.module.css";
 const features = [
   {
     id: 1,
-    title: "Pay supplier invoices",
+    title: "Crédito",
     description:
-      "Our goal is to streamline SMB trade, making it easier and faster than ever.",
+      "Capital para impulsionar seus negócios e transformar oportunidades em crescimento.",
     className: "cardLarge",
   },
   {
     id: 2,
-    title: "Pay supplier invoices",
+    title: "Câmbio",
     description:
-      "Our goal is to streamline SMB trade, making it easier and faster than ever.",
+      "Conecte seu negócio ao mundo com agilidade e eficiência.",
     className: "cardSmall",
   },
   {
     id: 3,
-    title: "Pay supplier invoices",
+    title: "BPO - Parceria Financeira",
     description:
-      "Our goal is to streamline SMB trade, making it easier and faster than ever.",
+      "Mais controle, menos burocracia e uma gestão financeira eficiente.",
     className: "cardSmall",
   },
   {
     id: 4,
-    title: "Pay supplier invoices",
+    title: "Investimento",
     description:
-      "Our goal is to streamline SMB trade, making it easier and faster than ever.",
+      "Estratégia e inteligência para potencializar seus resultados.",
     className: "cardLarge",
   },
 ];
@@ -93,6 +93,24 @@ export function Features() {
             </article>
           ))}
         </div>
+
+        <a className={styles.productsLink} href="#features">
+          <span>Conheça todos os nossos produtos</span>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
+        </a>
       </div>
     </section>
   );

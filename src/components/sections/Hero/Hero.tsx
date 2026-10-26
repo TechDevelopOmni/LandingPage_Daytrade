@@ -3,15 +3,38 @@ import { Navbar } from "../../layout/Navbar";
 import { siteContent } from "../../../data/home";
 import styles from "./Hero.module.css";
 
-const customerLogos = [
-  { name: "DOORDASH", label: "DoorDash", style: "doordash" },
-  { name: "BCG", label: "Boston Consulting Group", style: "bcg" },
-  { name: "VILLAGE", label: "Village Global", style: "village" },
-  { name: "Tesi", style: "tesi" },
-  { name: "Brevo", style: "brevo" },
-  { name: "Railway", style: "railway" },
-  { name: "yuno", style: "yuno" },
-  { name: "Mistral AI", style: "mistral" },
+type CustomerLogo = {
+  name: string;
+  label?: string;
+  style: string;
+  src?: string;
+};
+
+const customerLogos: CustomerLogo[] = [
+  {
+    name: "WBA",
+    label: "WBA",
+    style: "wba",
+    src: "/images/logos/WBA.png",
+  },
+  {
+    name: "DTI",
+    label: "DTI",
+    style: "dti",
+    src: "/images/logos/DTI.png",
+  },
+  {
+    name: "CRDC",
+    label: "CRDC",
+    style: "crdc",
+    src: "/images/logos/CRDC.png",
+  },
+  {
+    name: "Rendimento",
+    label: "Rendimento",
+    style: "rendimento",
+    src: "/images/logos/Rendimento.png",
+  },
 ];
 
 export function Hero() {
@@ -121,19 +144,29 @@ export function Hero() {
       >
         <div className={styles.logoViewport}>
           <div className={styles.logoTrack}>
-            {[false, true].map((isDuplicate) => (
+            {[0, 1, 2].map((copyIndex) => (
               <div
-                key={isDuplicate ? "duplicate" : "original"}
+                key={`sequence-${copyIndex}`}
                 className={styles.logoSequence}
-                aria-hidden={isDuplicate}
+                aria-hidden={copyIndex > 0}
               >
-                {customerLogos.map((logo) => (
+                {customerLogos.map((logo, index) => (
                   <span
-                    key={logo.name}
+                    key={`${logo.name}-${index}`}
                     className={`${styles.logo} ${styles[logo.style]}`}
-                    aria-label={logo.label}
+                    aria-label={logo.src ? undefined : logo.label}
                   >
-                    {logo.name}
+                    {logo.src ? (
+                      <Image
+                        src={logo.src}
+                        alt={logo.label ?? logo.name}
+                        width={140}
+                        height={48}
+                        className={styles.logoImage}
+                      />
+                    ) : (
+                      logo.name
+                    )}
                   </span>
                 ))}
               </div>

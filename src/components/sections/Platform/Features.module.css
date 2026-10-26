@@ -136,6 +136,67 @@
   line-height: 1.5;
 }
 
+.productsLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 32px auto 0;
+  color: #0b1225;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.productsLink svg {
+  flex: none;
+  transition: transform 180ms ease;
+}
+
+.productsLink:hover svg {
+  transform: translateX(4px);
+}
+
+.productsLink:focus-visible {
+  outline: 2px solid #0b1225;
+  outline-offset: 5px;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding: 40px 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - 80px);
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  .grid {
+    flex: 1;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    row-gap: 22px;
+  }
+
+  .card {
+    min-height: 0;
+    padding: 26px 30px;
+  }
+
+  .productsLink {
+    margin-top: 22px;
+  }
+}
+
 /* Tablet */
 
 @media (max-width: 1023px) {
@@ -206,6 +267,11 @@
   .cardDescription {
     font-size: 16px;
   }
+
+  .productsLink {
+    margin-top: 26px;
+    font-size: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -215,5 +281,9 @@
 
   .card:hover {
     transform: none;
+  }
+
+  .productsLink svg {
+    transition: none;
   }
 }
