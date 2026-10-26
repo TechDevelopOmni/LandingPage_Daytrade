@@ -10,7 +10,9 @@ const focusableSelector =
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDayTradeMenuOpen, setIsDayTradeMenuOpen] = useState(false);
+  const [openDesktopMenu, setOpenDesktopMenu] = useState<
+    "DayTrade" | "Setores" | null
+  >(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -82,69 +84,84 @@ export function Navbar() {
       variant === "desktop" ? navLinkClass : mobileNavLinkClass;
 
     if (item.type === "menu" && variant === "desktop") {
+      const menuKey = item.label === "Setores" ? "Setores" : "DayTrade";
+      const isMenuOpen = openDesktopMenu === menuKey;
+      const menuContent =
+        menuKey === "Setores"
+          ? {
+              headline: "Soluções para o seu setor.",
+              description:
+                "Encontre caminhos financeiros alinhados aos desafios do seu mercado.",
+              items: ["Indústria", "Construtora", "Agronegócio"],
+            }
+          : {
+              headline: "Conheça a DayTrade.",
+              description:
+                "Conteudos e atalhos do menu serao definidos nesta area.",
+              items: ["Sobre nós", "Parceiro indicador", "Área do cliente"],
+            };
+
       return (
         <div
           className="relative"
-          onMouseEnter={() => setIsDayTradeMenuOpen(true)}
-          onMouseLeave={() => setIsDayTradeMenuOpen(false)}
-          onFocusCapture={() => setIsDayTradeMenuOpen(true)}
+          onMouseEnter={() => setOpenDesktopMenu(menuKey)}
+          onMouseLeave={() => setOpenDesktopMenu(null)}
+          onFocusCapture={() => setOpenDesktopMenu(menuKey)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-              setIsDayTradeMenuOpen(false);
+              setOpenDesktopMenu(null);
             }
           }}
         >
           <button
             type="button"
-            className={`${navLinkClass} ${isDayTradeMenuOpen ? "bg-white/10" : ""}`}
-            aria-expanded={isDayTradeMenuOpen}
+            className={`${navLinkClass} ${isMenuOpen ? "bg-white/10" : ""}`}
+            aria-expanded={isMenuOpen}
             aria-haspopup="true"
-            onClick={() => setIsDayTradeMenuOpen(true)}
+            onClick={() => setOpenDesktopMenu(menuKey)}
             onKeyDown={(event) => {
               if (event.key === "Escape") {
-                setIsDayTradeMenuOpen(false);
+                setOpenDesktopMenu(null);
                 event.currentTarget.blur();
               }
             }}
           >
             {item.label}
-            <ChevronDown isOpen={isDayTradeMenuOpen} />
+            <ChevronDown isOpen={isMenuOpen} />
           </button>
 
           <div
             className={`absolute left-0 top-full z-50 pt-4 transition duration-150 ${
-              isDayTradeMenuOpen
+              isMenuOpen
                 ? "visible translate-y-0 opacity-100"
                 : "invisible -translate-y-1 opacity-0"
             }`}
           >
             <div
               className="w-[min(760px,calc(100vw-7rem))] rounded-lg border border-black/10 bg-white p-8 text-zinc-950 shadow-2xl shadow-black/25"
-              aria-label="Menu DayTrade"
+              aria-label={`Menu ${menuKey}`}
             >
               <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] gap-12">
                 <div className="border-r border-zinc-200 pr-10">
-                  <p className="text-sm font-medium text-zinc-500">DayTrade</p>
+                  <p className="text-sm font-medium text-zinc-500">{menuKey}</p>
                   <p className="mt-4 text-3xl font-normal leading-tight">
-                    Conheça a Daytrade.
+                    {menuContent.headline}
                   </p>
                   <p className="mt-4 max-w-sm text-base leading-7 text-zinc-600">
-                    Conteudos e atalhos do menu serao definidos nesta area.
+                    {menuContent.description}
                   </p>
                 </div>
 
-                <div className="grid gap-6">
-                  {["Sobre nós", "Parceiro indicador", "Área do cliente"].map(
-                    (label) => (
-                      <button
-                        key={label}
-                        type="button"
-                        className="w-fit text-left text-lg font-normal text-zinc-950 transition-colors hover:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-950"
-                      >
-                        {label}
-                      </button>
-                    ),
-                  )}
+                <div className={`grid ${menuKey === "Setores" ? "gap-4" : "gap-6"}`}>
+                  {menuContent.items.map((label) => (
+                    <button
+                      key={label}
+                      type="button"
+                      className="w-fit text-left text-lg font-normal text-zinc-950 transition-colors hover:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-950"
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -221,7 +238,7 @@ export function Navbar() {
             </nav>
 
             {siteContent.navigation.slice(1, 4).map((item) => (
-              <span key={item.label}>{navAction(item)}</span>
+              <div key={item.label}>{navAction(item)}</div>
             ))}
 
             <nav
@@ -241,7 +258,7 @@ export function Navbar() {
             </nav>
 
             {siteContent.navigation.slice(5).map((item) => (
-              <span key={item.label}>{navAction(item)}</span>
+              <div key={item.label}>{navAction(item)}</div>
             ))}
           </div>
         </div>

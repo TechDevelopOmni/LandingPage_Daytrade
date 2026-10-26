@@ -10,8 +10,9 @@ export const siteContent = {
   },
   navigation: [
     { label: "DayTrade", type: "menu" },
-    { label: "Produtos", type: "demo" },
-    { label: "Investimentos", type: "demo" },
+    { label: "Porfólio", type: "demo" },
+    { label: "Investimento", type: "demo" },
+    { label: "Setores", type: "menu" },
     { label: "Carreira", type: "demo" },
     { label: "Blog", type: "demo" },
   ],

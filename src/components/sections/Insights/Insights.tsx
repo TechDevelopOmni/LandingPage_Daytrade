@@ -1,10 +1,10 @@
 import styles from "./Insights.module.css";
 
 const metrics = [
-  { value: "50.000+", label: "Operações processadas" },
-  { value: "99,9%", label: "Disponibilidade da plataforma" },
-  { value: "1.200+", label: "Empresas atendidas" },
-  { value: "1,2s", label: "Tempo médio de resposta" },
+  { value: "400+", label: "Clientes atendidos" },
+  { value: "R$ 500mi", label: "Em operações realizadas" },
+  { value: "10.000+", label: "Operações realizadas" },
+  { value: "4 passos", label: "Sem burocracia" },
 ];
 
 // Edite estes valores (0 a 100) para atualizar a curva do gráfico.
