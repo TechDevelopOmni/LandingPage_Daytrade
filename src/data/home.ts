@@ -1,21 +1,19 @@
 export const siteContent = {
   brand: {
-    name: "Papermark",
+    name: "DayTrade",
     logo: {
-      src: "/images/brand-logo.png",
-      alt: "Logo da empresa",
-      width: 119,
-      height: 32,
+      src: "/images/daytrade-logo-minimalista.png",
+      alt: "Logo DayTrade",
+      width: 160,
+      height: 48,
     },
   },
   navigation: [
-    { label: "Why Papermark?", type: "menu" },
-    { label: "Data Room", type: "demo" },
-    { label: "Pricing", type: "demo" },
-    { label: "Security", type: "demo" },
-    { label: "Developers", type: "menu" },
+    { label: "DayTrade", type: "menu" },
+    { label: "Produtos", type: "demo" },
+    { label: "Investimentos", type: "demo" },
+    { label: "Carreira", type: "demo" },
     { label: "Blog", type: "demo" },
-    { label: "Customers", type: "demo" },
   ],
   actions: {
     login: "Log in",

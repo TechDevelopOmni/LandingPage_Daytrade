@@ -18,7 +18,7 @@ const features = [
   },
   {
     id: 3,
-    title: "BPO - Parceria Financeira",
+    title: "BPO",
     description:
       "Mais controle, menos burocracia e uma gestão financeira eficiente.",
     className: "cardSmall",

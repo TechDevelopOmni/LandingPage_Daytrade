@@ -10,6 +10,7 @@ const focusableSelector =
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDayTradeMenuOpen, setIsDayTradeMenuOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -80,6 +81,78 @@ export function Navbar() {
     const linkClass =
       variant === "desktop" ? navLinkClass : mobileNavLinkClass;
 
+    if (item.type === "menu" && variant === "desktop") {
+      return (
+        <div
+          className="relative"
+          onMouseEnter={() => setIsDayTradeMenuOpen(true)}
+          onMouseLeave={() => setIsDayTradeMenuOpen(false)}
+          onFocusCapture={() => setIsDayTradeMenuOpen(true)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+              setIsDayTradeMenuOpen(false);
+            }
+          }}
+        >
+          <button
+            type="button"
+            className={`${navLinkClass} ${isDayTradeMenuOpen ? "bg-white/10" : ""}`}
+            aria-expanded={isDayTradeMenuOpen}
+            aria-haspopup="true"
+            onClick={() => setIsDayTradeMenuOpen(true)}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                setIsDayTradeMenuOpen(false);
+                event.currentTarget.blur();
+              }
+            }}
+          >
+            {item.label}
+            <ChevronDown isOpen={isDayTradeMenuOpen} />
+          </button>
+
+          <div
+            className={`absolute left-0 top-full z-50 pt-4 transition duration-150 ${
+              isDayTradeMenuOpen
+                ? "visible translate-y-0 opacity-100"
+                : "invisible -translate-y-1 opacity-0"
+            }`}
+          >
+            <div
+              className="w-[min(760px,calc(100vw-7rem))] rounded-lg border border-black/10 bg-white p-8 text-zinc-950 shadow-2xl shadow-black/25"
+              aria-label="Menu DayTrade"
+            >
+              <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] gap-12">
+                <div className="border-r border-zinc-200 pr-10">
+                  <p className="text-sm font-medium text-zinc-500">DayTrade</p>
+                  <p className="mt-4 text-3xl font-normal leading-tight">
+                    Conheça a Daytrade.
+                  </p>
+                  <p className="mt-4 max-w-sm text-base leading-7 text-zinc-600">
+                    Conteudos e atalhos do menu serao definidos nesta area.
+                  </p>
+                </div>
+
+                <div className="grid gap-6">
+                  {["Sobre nós", "Parceiro indicador", "Área do cliente"].map(
+                    (label) => (
+                      <button
+                        key={label}
+                        type="button"
+                        className="w-fit text-left text-lg font-normal text-zinc-950 transition-colors hover:text-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-zinc-950"
+                      >
+                        {label}
+                      </button>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     if (item.type === "menu") {
       return (
         <FeedbackButton
@@ -118,13 +191,13 @@ export function Navbar() {
             className="flex h-full flex-none items-center rounded-md text-white ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             aria-label="Return home"
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex w-40 items-center">
               <Image
                 src={siteContent.brand.logo.src}
                 alt={siteContent.brand.name}
-                width={100}
-                height={27}
-                className="h-[27px] w-auto brightness-0 invert"
+                width={siteContent.brand.logo.width}
+                height={siteContent.brand.logo.height}
+                className="h-10 w-auto max-w-full brightness-0 invert"
                 fetchPriority="high"
               />
             </div>
@@ -224,7 +297,7 @@ export function Navbar() {
                 alt={siteContent.brand.logo.alt}
                 width={siteContent.brand.logo.width}
                 height={siteContent.brand.logo.height}
-                className="h-7 w-auto brightness-0 invert"
+                className="h-10 w-auto brightness-0 invert"
               />
               <button
                 type="button"
@@ -265,7 +338,7 @@ const navLinkClass =
 const mobileNavLinkClass =
   "group inline-flex min-h-11 w-max items-center justify-center rounded-md bg-transparent px-2.5 py-1 text-left text-xl font-normal text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
 
-function ChevronDown() {
+function ChevronDown({ isOpen = false }: { isOpen?: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +350,9 @@ function ChevronDown() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300"
+      className={`relative top-[1px] ml-1 h-3 w-3 transition duration-300 ${
+        isOpen ? "rotate-180" : ""
+      }`}
       aria-hidden="true"
     >
       <path d="m6 9 6 6 6-6" />
