@@ -1,24 +1,24 @@
 import Image from "next/image";
-import { siteContent } from "../../data/home";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const navigationGroups = [
   {
     title: "Soluções",
     links: [
-      { label: "Crédito", href: "#features" },
-      { label: "Câmbio", href: "#features" },
-      { label: "BPO", href: "#features" },
-      { label: "Investimentos", href: "#features" },
+      { label: "Crédito", href: "/#features" },
+      { label: "Câmbio", href: "/#features" },
+      { label: "BPO", href: "/#features" },
+      { label: "Investimentos", href: "/#features" },
     ],
   },
   {
     title: "DayTrade",
     links: [
-      { label: "Quem somos", href: "#top" },
-      { label: "Carreira", href: "#top" },
-      { label: "Conteúdos", href: "#blog" },
-      { label: "Dúvidas frequentes", href: "#faq" },
+      { label: "Quem somos", href: "/sobre-nos" },
+      { label: "Carreira", href: "/" },
+      { label: "Conteúdos", href: "/#blog" },
+      { label: "Dúvidas frequentes", href: "/#faq" },
     ],
   },
 ];
@@ -29,22 +29,22 @@ export function Footer() {
       <div className={styles.container}>
         <div className={styles.mainContent}>
           <div className={styles.brandColumn}>
-            <a className={styles.brandLink} href="#top" aria-label="Voltar ao início">
+            <Link className={styles.brandLink} href="/" aria-label="Voltar ao início">
               <Image
-                src={siteContent.brand.logo.src}
-                alt={siteContent.brand.logo.alt}
-                width={siteContent.brand.logo.width}
-                height={siteContent.brand.logo.height}
+                src="/images/daytrade-logo-home.png"
+                alt="DayTrade"
+                width={515}
+                height={167}
                 className={styles.logo}
               />
-            </a>
+            </Link>
             <p className={styles.brandDescription}>
               Soluções financeiras para decisões mais claras e negócios em movimento.
             </p>
-            <a className={styles.contactLink} href="#faq">
+            <Link className={styles.contactLink} href="/#faq">
               Fale com um especialista
               <span aria-hidden="true">↗</span>
-            </a>
+            </Link>
           </div>
 
           <nav className={styles.navigation} aria-label="Navegação do rodapé">
@@ -54,7 +54,7 @@ export function Footer() {
                 <ul>
                   {group.links.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href}>{link.label}</a>
+                      <Link href={link.href}>{link.label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -66,8 +66,8 @@ export function Footer() {
         <div className={styles.bottomBar}>
           <p>© 2026 DayTrade. Todos os direitos reservados.</p>
           <div className={styles.legalLinks}>
-            <a href="#top">Privacidade</a>
-            <a href="#top">Termos de uso</a>
+            <Link href="/">Privacidade</Link>
+            <Link href="/">Termos de uso</Link>
           </div>
         </div>
       </div>

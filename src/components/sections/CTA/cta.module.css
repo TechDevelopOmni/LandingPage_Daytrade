@@ -23,8 +23,45 @@
     min-height: 333px;
     padding: 60px 52px;
 
-    background: #091c08;
+    background: #0f172a;
     border-radius: 14px;
+    box-shadow: 0 28px 72px rgba(15, 23, 42, 0.32);
+}
+
+.blueBanner {
+    background: #00213d;
+}
+
+.blueBanner .title {
+    color: #a8bcc8;
+}
+
+.blueBanner .highlight {
+    color: #f4fbfd;
+}
+
+.blueBanner .primaryButton {
+    color: #00213d;
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+.blueBanner .primaryButton:hover {
+    background: #e1f0f4;
+    border-color: #e1f0f4;
+}
+
+.blueBanner .secondaryButton {
+    color: #ffffff;
+    border-color: #86a8b7;
+}
+
+.blueBanner .secondaryButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.blueBanner .note {
+    color: #a8bcc8;
 }
 
 /* Conteúdo */
@@ -35,13 +72,32 @@
     max-width: 720px;
 }
 
+.dtiLogo {
+    display: block;
+    width: auto;
+    height: 42px;
+    margin-bottom: 18px;
+}
+
+.dtiPhonePreview {
+    position: absolute;
+    z-index: 2;
+    right: clamp(56px, 7vw, 112px);
+    top: 50%;
+    width: auto;
+    height: clamp(255px, 23vw, 350px);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.24));
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
 /* Título */
 
 .title {
     max-width: 720px;
     margin: 0 0 34px;
 
-    color: #a5a99d;
+    color: #cbd5e1;
     font-size: clamp(26px, 2.8vw, 37px);
     font-weight: 400;
     line-height: 1.2;
@@ -49,7 +105,7 @@
 }
 
 .highlight {
-    color: #f5f8f2;
+    color: #ffffff;
 }
 
 /* Botões */
@@ -85,13 +141,13 @@
 /* Botão principal */
 
 .primaryButton {
-    color: #10200d;
-    background: #a9e797;
-    border: 1px solid #a9e797;
+    color: #0f172a;
+    background: #ba8d31;
+    border: 1px solid #ba8d31;
 }
 
 .primaryButton:hover {
-    background: #c0f2ae;
+    background: #d1a54b;
     transform: translateY(-2px);
 }
 
@@ -100,11 +156,11 @@
 .secondaryButton {
     color: #ffffff;
     background: transparent;
-    border: 1px solid #63705e;
+    border: 1px solid #ba8d31;
 }
 
 .secondaryButton:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(186, 141, 49, 0.16);
     transform: translateY(-2px);
 }
 
@@ -114,22 +170,17 @@
     outline-offset: 4px;
 }
 
-/* Indicadores dos botões */
-
-.key {
+.buttonIcon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 18px;
+    height: 18px;
+}
 
-    width: 27px;
-    height: 27px;
-
-    border: 1px solid currentColor;
-    border-radius: 7px;
-
-    font-size: 14px;
-    font-weight: 400;
-    opacity: 0.6;
+.buttonIcon svg {
+    width: 100%;
+    height: 100%;
 }
 
 /* Texto inferior */
@@ -137,7 +188,7 @@
 .note {
     margin: 19px 0 0;
 
-    color: #949d8d;
+    color: #cbd5e1;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -170,7 +221,7 @@
     width: 6px;
     height: 6px;
 
-    background: #b4f5a8;
+    background: #ba8d31;
     opacity: 0;
 }
 
@@ -222,6 +273,38 @@
 
         opacity: 0.6;
     }
+
+    .dtiPhonePreview {
+        right: 52px;
+        height: 265px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .banner {
+        min-height: 0;
+        padding: 50px 36px 305px;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .dtiPhonePreview {
+        top: auto;
+        right: 50%;
+        bottom: 0;
+        height: 260px;
+        transform: translateX(50%);
+    }
+
+    .pixelArt {
+        right: 50%;
+        bottom: 0;
+        transform: translate(50%, -18px) scale(0.75);
+        transform-origin: bottom center;
+    }
 }
 
 /* =====================================
@@ -238,8 +321,8 @@
     }
 
     .banner {
-        min-height: 420px;
-        padding: 35px 25px 130px;
+        min-height: 0;
+        padding: 35px 25px 220px;
         border-radius: 12px;
     }
 
@@ -253,21 +336,31 @@
         margin-bottom: 28px;
     }
 
+    .dtiLogo {
+        height: 34px;
+        margin-bottom: 14px;
+    }
+
+    .dtiPhonePreview {
+        top: auto;
+        right: 50%;
+        bottom: 0;
+        height: 180px;
+        transform: translateX(50%);
+    }
+
     .actions {
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 10px;
     }
 
     .primaryButton,
     .secondaryButton {
+        width: 100%;
         min-height: 46px;
         padding: 9px 13px;
         font-size: 13px;
-    }
-
-    .key {
-        width: 23px;
-        height: 23px;
-        font-size: 12px;
     }
 
     .note {
@@ -278,11 +371,11 @@
     /* Pixels no Mobile */
 
     .pixelArt {
-        right: -80px;
+        right: 50%;
         bottom: 0;
 
-        transform: translateY(-35px) scale(0.75);
-        transform-origin: bottom right;
+        transform: translate(50%, -8px) scale(0.58);
+        transform-origin: bottom center;
 
         opacity: 0.8;
     }

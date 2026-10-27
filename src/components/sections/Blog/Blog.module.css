@@ -69,14 +69,73 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 58px);
+  --blog-card-gap: clamp(24px, 3vw, 58px);
+
+  display: flex;
+  gap: var(--blog-card-gap);
   margin-top: clamp(44px, 6vh, 70px);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-padding-left: 2px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel {
+  position: relative;
 }
 
 .card {
+  flex: 0 0 calc((100% - var(--blog-card-gap) - var(--blog-card-gap)) / 3);
   min-width: 0;
+  scroll-snap-align: start;
+}
+
+.previousButton,
+.nextButton {
+  position: absolute;
+  z-index: 1;
+  top: calc(50% + 24px);
+  right: -21px;
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cfd9e0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #A8CF45;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(15, 29, 49, 0.12);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.previousButton {
+  right: auto;
+  left: -21px;
+}
+
+.previousButton:hover {
+  background: #003e8f;
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+.nextButton:hover {
+  background: #003e8f;
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.previousButton:focus-visible,
+.nextButton:focus-visible {
+  outline: 2px solid #00213d;
+  outline-offset: 4px;
 }
 
 .cardLink {
@@ -325,8 +384,20 @@
   }
 
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 28px;
+    --blog-card-gap: 28px;
+    gap: var(--blog-card-gap);
+  }
+
+  .card {
+    flex-basis: calc((100% - var(--blog-card-gap)) / 2);
+  }
+
+  .nextButton {
+    right: -16px;
+  }
+
+  .previousButton {
+    left: -16px;
   }
 
   .preview {
@@ -357,9 +428,27 @@
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 38px;
+    --blog-card-gap: 16px;
+    gap: var(--blog-card-gap);
     margin-top: 38px;
+  }
+
+  .card {
+    flex-basis: 100%;
+  }
+
+  .nextButton {
+    top: calc(50% + 19px);
+    right: -10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .previousButton {
+    top: calc(50% + 19px);
+    left: -10px;
+    width: 38px;
+    height: 38px;
   }
 
   .preview {
@@ -379,7 +468,9 @@
 @media (prefers-reduced-motion: reduce) {
   .preview,
   .categoryLink,
-  .cardTitle {
+  .cardTitle,
+  .previousButton,
+  .nextButton {
     transition: none;
   }
 

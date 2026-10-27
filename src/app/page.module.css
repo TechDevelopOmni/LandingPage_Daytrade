@@ -1,0 +1,24 @@
+.sectionDivider {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+.sectionDivider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(220px, 40vw, 520px);
+  height: 1px;
+  background: #a8cf45;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  .sectionDivider {
+    height: 36px;
+  }
+}

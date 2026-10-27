@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
   padding: 70px 0 28px;
-  background: #00213d;
+  background: #003e8f;
   color: #f7fbfc;
 }
 
@@ -31,9 +31,8 @@
 
 .logo {
   width: auto;
-  height: 38px;
+  height: 40px;
   max-width: 180px;
-  filter: brightness(0) invert(1);
   object-fit: contain;
 }
 
@@ -65,11 +64,12 @@
 }
 
 .contactLink:hover {
-  border-color: #36c5c9;
-  color: #36c5c9;
+  border-color: #a8cf45;
+  color: #a8cf45;
 }
 
 .contactLink:hover span {
+  color: #a8cf45;
   transform: translate(2px, -2px);
 }
 
@@ -90,7 +90,7 @@
 
 .linkGroup h2 {
   margin: 0 0 18px;
-  color: #ffffff;
+  color: #a8cf45;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.3;

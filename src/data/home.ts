@@ -10,7 +10,7 @@ export const siteContent = {
   },
   navigation: [
     { label: "DayTrade", type: "menu" },
-    { label: "Porfólio", type: "demo" },
+    { label: "Portfólio", type: "demo" },
     { label: "Investimento", type: "demo" },
     { label: "Setores", type: "menu" },
     { label: "Carreira", type: "demo" },
@@ -21,15 +21,15 @@ export const siteContent = {
     primary: "Start now",
   },
   hero: {
-    compliance: "ISO 27001 certified · SOC 2 Type II",
+    compliance: "CNPJ: 29.270.075/0001-74 - DayTrade Invest Securitizadora S/A",
     complianceHref: "/security",
-    title: "Close Deals Faster.",
+    title: "Crédito Inteligente.",
     description:
       "The world's most ambitious dealmakers, founders and finance teams trust Papermark to host their data rooms and share confidential documents.",
-    cta: "Start for free",
+    cta: "Fale com um especialista",
     ctaHref: "/login",
-    ctaNote: "No credit card required",
-    trusted: "TRUSTED BY 70,000+ GLOBAL COMPANIES",
+    ctaNote: "**Sujeito à análise de crédito",
+    trusted: "Atendimento em Sorocaba e Região.",
     image: {
       src: "/images/hero-office.png",
       alt: "",

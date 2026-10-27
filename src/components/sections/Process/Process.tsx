@@ -4,27 +4,27 @@ import styles from "./Process.module.css";
 const steps = [
   {
     number: "1",
-    title: "Understand",
+    title: "Converse com um especialista",
     description:
-      "Clarify the people, process, and outcome that matter.",
+      "Entendemos o momento da sua empresa e identificamos a solução financeira mais adequada.",
   },
   {
     number: "2",
-    title: "Shape",
+    title: "Envie a documentação necessária.",
     description:
-      "Turn the right idea into a focused plan and interface.",
+      "Organizamos os documentos para seguir com a análise de crédito e a formalização da proposta.",
   },
   {
     number: "3",
-    title: "Build",
+    title: "Receba e aprove a proposta",
     description:
-      "Deliver the smallest reliable version with feedback built in.",
+      "Você recebe as condições da operação com clareza para avaliar e assinar digitalmente.",
   },
   {
     number: "4",
-    title: "Improve",
+    title: "Receba com praticidade na conta digital DTI",
     description:
-      "Measure the result and strengthen what is already working.",
+      "Após a conclusão da operação, os recursos são disponibilizados na sua conta digital DTI, com praticidade e segurança para sua empresa.",
   },
 ];
 
@@ -58,16 +58,15 @@ export function Process() {
         <div className={styles.content}>
           <div className={styles.intro}>
             <span className={styles.eyebrow}>
-              Delivery Framework
+              Como Funciona
             </span>
 
             <h2 id="process-title" className={styles.title}>
-              A delivery rhythm your team can follow.
+              Do primeiro contato ao crédito em sua conta.
             </h2>
 
             <p className={styles.description}>
-              A clear sequence keeps strategic choices,
-              practical implementation, and learning connected.
+              Uma jornada simples, com acompanhamento especializado em cada etapa.
             </p>
           </div>
 

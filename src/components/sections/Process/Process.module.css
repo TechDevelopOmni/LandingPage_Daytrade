@@ -34,7 +34,7 @@
   display: block;
   margin-bottom: 20px;
 
-  color: #c000d4;
+  color: #A8CF45;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.19em;
@@ -91,7 +91,7 @@
   bottom: 0;
   left: 12px;
   width: 2px;
-  background-color: #00799a;
+  background-color: #003e8f;
 }
 
 .step {
@@ -117,7 +117,7 @@
   height: 34px;
 
   border-radius: 50%;
-  background: #007b9a;
+  background: #003e8f;
   color: #ffffff;
 
   font-size: 16px;
@@ -157,7 +157,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  color: #c000d4;
+  color: #A8CF45;
 }
 
 .cardTitle {

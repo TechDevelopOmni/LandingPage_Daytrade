@@ -6,6 +6,7 @@ import { CallToAction } from "../components/sections/CTA/cta";
 import { Blog } from "../components/sections/Blog/Blog";
 import { FAQ } from "../components/sections/FAQ/FAQ";
 import { Footer } from "../components/layout/Footer";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <Insights />
         <Features />
+        <div className={styles.sectionDivider} aria-hidden="true" />
         <Process />
         <CallToAction />
         <Blog />

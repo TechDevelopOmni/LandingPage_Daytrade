@@ -7,7 +7,7 @@
 
   background-image: radial-gradient(
     circle,
-    rgba(15, 23, 42, 0.14) 1px,
+    rgba(168, 207, 69, 0.48) 1px,
     transparent 1px
   );
 
@@ -75,27 +75,28 @@
 /* Cards */
 
 .card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 
   min-width: 0;
   min-height: 355px;
   padding: 30px;
 
-  background: #f1f4f8;
+  background: #00213d;
   border-radius: 9px;
 
   transition:
     transform 250ms ease,
-    background-color 250ms ease,
     box-shadow 250ms ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  background: #eaf0f7;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.18);
 }
 
 .cardLarge {
@@ -106,21 +107,60 @@
   grid-column: span 1;
 }
 
+.cardImage {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 450ms ease;
+}
+
+.creditImage {
+  object-position: center 30%;
+}
+
+.investmentImage {
+  object-position: center 65%;
+}
+
+.cardOverlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 33, 61, 0.28) 0%,
+    rgba(0, 30, 56, 0.58) 48%,
+    rgba(0, 20, 40, 0.94) 100%
+  );
+}
+
+.card:hover .cardImage {
+  transform: scale(1.045);
+}
+
 .cardIcon {
+  position: relative;
+  z-index: 2;
   display: flex;
+  width: 48px;
+  height: 48px;
   align-items: center;
-  justify-content: flex-start;
-  color: #0b1225;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 12px;
+  color: #ffffff;
 }
 
 .cardContent {
+  position: relative;
+  z-index: 2;
   max-width: 460px;
 }
 
 .cardTitle {
   margin: 0 0 4px;
 
-  color: #0b1225;
+  color: #ffffff;
   font-size: 23px;
   font-weight: 500;
   letter-spacing: -0.035em;
@@ -130,7 +170,7 @@
 .cardDescription {
   margin: 0;
 
-  color: #596982;
+  color: rgba(255, 255, 255, 0.82);
   font-size: 19px;
   font-weight: 400;
   line-height: 1.5;
@@ -138,9 +178,9 @@
 
 .productsLink {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   width: fit-content;
   margin: 32px auto 0;
   color: #0b1225;
@@ -152,12 +192,11 @@
 
 .productsLink svg {
   flex: none;
-  transform: rotate(90deg);
   transition: transform 180ms ease;
 }
 
 .productsLink:hover svg {
-  transform: translateY(4px) rotate(90deg);
+  transform: translateX(4px);
 }
 
 .productsLink:focus-visible {
@@ -289,6 +328,10 @@
 
   .card:hover {
     transform: none;
+  }
+
+  .cardImage {
+    transition: none;
   }
 
   .productsLink svg {

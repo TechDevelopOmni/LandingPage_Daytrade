@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --display: var(--font-articulat, "Inter"), "Inter", system-ui, sans-serif;
 }
 
 @theme inline {

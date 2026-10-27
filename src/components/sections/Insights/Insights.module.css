@@ -22,7 +22,7 @@
 }
 
 .titleStrong {
-  color: #111d31;
+  color: #003e8f;
   font-weight: 600;
 }
 
@@ -43,7 +43,7 @@
 
 .metricValue {
   margin: 0 0 4px;
-  color: #111d31;
+  color: #003e8f;
   font-size: clamp(23px, 1.9vw, 30px);
   font-weight: 600;
   letter-spacing: -0.045em;
@@ -60,6 +60,10 @@
 
 .chart {
   width: 100%;
+}
+
+.chartGraphic {
+  position: relative;
   height: clamp(130px, 14vw, 210px);
 }
 
@@ -68,6 +72,66 @@
   width: 100%;
   height: 100%;
   overflow: visible;
+}
+
+.chartPoint {
+  position: absolute;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #a8cf45;
+  box-shadow: 0 1px 4px rgba(0, 33, 61, 0.22);
+  cursor: default;
+  transform: translate(-50%, -50%);
+}
+
+.chartPoint:focus-visible {
+  outline: 2px solid #00213d;
+  outline-offset: 3px;
+}
+
+.chartTooltip {
+  position: absolute;
+  bottom: calc(100% + 11px);
+  left: 50%;
+  display: grid;
+  min-width: max-content;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #00213d;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 7px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  white-space: nowrap;
+}
+
+.chartTooltip strong {
+  color: #a8cf45;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.chartPoint:hover .chartTooltip,
+.chartPoint:focus .chartTooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.chartYears {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+  color: #778190;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
 }
 
 @media (min-width: 1024px) {
@@ -93,7 +157,7 @@
     margin-top: 38px;
   }
 
-  .chart {
+  .chartGraphic {
     height: clamp(125px, 20vw, 185px);
     margin-top: 6px;
   }
@@ -126,8 +190,18 @@
     font-size: 12px;
   }
 
-  .chart {
+  .chartGraphic {
     height: 112px;
     margin-top: 12px;
+  }
+
+  .chartYears {
+    margin-top: 7px;
+    font-size: 10px;
+  }
+
+  .chartTooltip {
+    padding: 7px 8px;
+    font-size: 10px;
   }
 }
