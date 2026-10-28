@@ -364,12 +364,12 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <nav
-        className={`mx-auto flex h-20 w-full max-w-[1720px] items-center justify-between px-7 sm:px-10 lg:h-24 lg:px-14 ${
+        className={`mx-auto flex h-20 w-full max-w-none items-center justify-between px-7 max-[359px]:h-16 max-[359px]:px-3 sm:px-10 lg:h-24 lg:px-14 ${
           isLight ? "text-zinc-950" : "text-white"
         }`}
         aria-label="Main"
       >
-        <div className="flex items-center space-x-10 px-4 py-3">
+        <div className="flex items-center space-x-10 px-4 py-3 max-[359px]:space-x-0 max-[359px]:px-0 max-[359px]:py-2">
           <button
             type="button"
             onClick={goToTop}
@@ -379,19 +379,19 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
             }`}
             aria-label="Return home"
           >
-            <div className="flex w-40 items-center">
+            <div className="flex w-40 items-center max-[359px]:w-28">
               <Image
                 src={headerLogo.src}
                 alt={headerLogo.alt}
                 width={headerLogo.width}
                 height={headerLogo.height}
-                className={`h-10 w-auto max-w-full ${isHomePage || isLight ? "" : "brightness-0 invert"}`}
+                className={`h-10 w-auto max-w-full max-[359px]:h-8 ${isHomePage || isLight ? "" : "brightness-0 invert"}`}
                 fetchPriority="high"
               />
             </div>
           </button>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <nav
               aria-label="Main"
               data-orientation="horizontal"
@@ -434,7 +434,7 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
           </div>
         </div>
 
-        <div className="hidden items-center md:flex">
+        <div className="hidden items-center lg:flex">
           <button
             type="button"
             onClick={openClientModal}
@@ -450,7 +450,7 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
           <button
             ref={buttonRef}
             type="button"
-            className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 md:hidden ${
+            className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 max-[359px]:min-h-10 max-[359px]:min-w-10 lg:hidden ${
               isLight
                 ? "border-black/20 bg-black/5 text-zinc-950 hover:bg-black/10 focus-visible:outline-zinc-950"
                 : "border-white/25 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white"
@@ -471,14 +471,14 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
       </nav>
 
       {isOpen ? (
-        <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm md:hidden">
+        <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm lg:hidden">
           <div
             ref={panelRef}
             id="mobile-navigation"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegacao"
-            className="ml-auto flex min-h-dvh w-full max-w-sm flex-col bg-zinc-950 px-6 py-6 text-white shadow-2xl shadow-black"
+            className="ml-auto flex min-h-dvh w-full max-w-sm flex-col bg-zinc-950 px-6 py-6 text-white shadow-2xl shadow-black max-[359px]:px-4 max-[359px]:py-4"
           >
             <div className="flex items-center justify-between">
               <Image

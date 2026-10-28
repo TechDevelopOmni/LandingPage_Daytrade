@@ -6,7 +6,7 @@
 
 .container {
   width: 100%;
-  max-width: 1366px;
+  max-width: none;
   margin: 0 auto;
   padding: 0 68px;
 }
@@ -122,6 +122,27 @@
 .chartPoint:focus .chartTooltip {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+.chartPoint:first-of-type .chartTooltip {
+  left: 0;
+  transform: translate(0, 7px);
+}
+
+.chartPoint:first-of-type:hover .chartTooltip,
+.chartPoint:first-of-type:focus .chartTooltip {
+  transform: translate(0, 0);
+}
+
+.chartPoint:last-child .chartTooltip {
+  right: 0;
+  left: auto;
+  transform: translate(0, 7px);
+}
+
+.chartPoint:last-child:hover .chartTooltip,
+.chartPoint:last-child:focus .chartTooltip {
+  transform: translate(0, 0);
 }
 
 .chartYears {

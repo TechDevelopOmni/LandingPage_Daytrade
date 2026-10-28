@@ -9,7 +9,7 @@
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: start;
   width: 100%;
-  max-width: 1366px;
+  max-width: none;
   margin: 0 auto;
   padding: 0 68px;
   column-gap: clamp(56px, 8vw, 132px);

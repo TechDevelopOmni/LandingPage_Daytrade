@@ -8,7 +8,7 @@
 
 .container {
     width: 100%;
-    max-width: 1350px;
+    max-width: none;
     margin: 0 auto;
 }
 
@@ -72,6 +72,10 @@
     max-width: 720px;
 }
 
+.copy {
+    max-width: 720px;
+}
+
 .dtiLogo {
     display: block;
     width: auto;
@@ -91,6 +95,10 @@
     transform: translateY(-50%);
 }
 
+.compactPhonePreview {
+    display: none;
+}
+
 /* Título */
 
 .title {
@@ -102,6 +110,20 @@
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.025em;
+}
+
+@media (max-width: 299px) {
+    .defaultPhonePreview {
+        display: none;
+    }
+
+    .compactPhonePreview {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+        object-fit: contain;
+    }
 }
 
 .highlight {
@@ -128,6 +150,8 @@
     padding: 10px 18px;
 
     border-radius: 9px;
+    cursor: pointer;
+    font-family: inherit;
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -321,19 +345,30 @@
     }
 
     .banner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) clamp(88px, 31vw, 148px);
+        column-gap: 10px;
         min-height: 0;
-        padding: 35px 25px 220px;
+        padding: 30px 20px;
         border-radius: 12px;
     }
 
     .content {
+        display: contents;
+    }
+
+    .copy {
+        grid-column: 1;
+        grid-row: 1;
         max-width: 100%;
+        position: relative;
+        z-index: 2;
     }
 
     .title {
-        font-size: clamp(25px, 6vw, 32px);
+        font-size: clamp(21px, 5.8vw, 28px);
         line-height: 1.25;
-        margin-bottom: 28px;
+        margin-bottom: 22px;
     }
 
     .dtiLogo {
@@ -342,14 +377,25 @@
     }
 
     .dtiPhonePreview {
+        position: relative;
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        justify-self: end;
         top: auto;
-        right: 50%;
-        bottom: 0;
-        height: 180px;
-        transform: translateX(50%);
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        transform: none;
     }
 
     .actions {
+        position: relative;
+        z-index: 2;
+        grid-column: 1 / -1;
+        grid-row: 2;
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
@@ -360,10 +406,14 @@
         width: 100%;
         min-height: 46px;
         padding: 9px 13px;
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .note {
+        position: relative;
+        z-index: 2;
+        grid-column: 1 / -1;
+        grid-row: 3;
         margin-top: 16px;
         font-size: 12px;
     }
@@ -378,6 +428,20 @@
         transform-origin: bottom center;
 
         opacity: 0.8;
+    }
+
+    .blueBanner .dtiPhonePreview {
+        display: none;
+    }
+
+    .blueBanner {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .buttonIcon {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 15px;
     }
 }
 

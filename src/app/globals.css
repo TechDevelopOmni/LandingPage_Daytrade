@@ -4,6 +4,12 @@
   --background: #ffffff;
   --foreground: #171717;
   --display: var(--font-articulat, "Inter"), "Inter", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
 }
 
 @theme inline {
@@ -13,17 +19,27 @@
   --font-mono: "Courier New", Courier, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main,
+footer {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 button {
@@ -43,6 +59,18 @@ button {
 @media (max-width: 767px) {
   .hero-title {
     font-size: clamp(3.5rem, 16vw, 5rem);
+  }
+}
+
+@media (max-width: 359px) {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 }
 

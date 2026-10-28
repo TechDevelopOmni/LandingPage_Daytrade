@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SpecialistContactButton } from "../contact/SpecialistContact";
 import styles from "./Footer.module.css";
 
 const navigationGroups = [
@@ -41,10 +42,10 @@ export function Footer() {
             <p className={styles.brandDescription}>
               Soluções financeiras para decisões mais claras e negócios em movimento.
             </p>
-            <Link className={styles.contactLink} href="/#faq">
+            <SpecialistContactButton className={styles.contactLink}>
               Fale com um especialista
               <span aria-hidden="true">↗</span>
-            </Link>
+            </SpecialistContactButton>
           </div>
 
           <nav className={styles.navigation} aria-label="Navegação do rodapé">

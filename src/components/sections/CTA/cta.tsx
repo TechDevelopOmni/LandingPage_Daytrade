@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import { SpecialistContactButton } from "../../contact/SpecialistContact";
 import styles from "./cta.module.css";
 
 type CallToActionProps = {
@@ -78,29 +79,40 @@ export function CallToAction({
             <div className={styles.container}>
                 <div className={`${styles.banner} ${variant === "blue" ? styles.blueBanner : ""}`}>
                     <div className={styles.content}>
-                        {variant === "default" ? (
-                            <Image
-                                src="/images/dti-logo-cta.png"
-                                alt="DTI"
-                                width={171}
-                                height={50}
-                                className={styles.dtiLogo}
-                            />
-                        ) : null}
-                        <h2 id={`${id}-title`} className={styles.title}>
-                            <span className={styles.highlight}>
-                                {highlight}
-                            </span>{" "}
-                            {title}
-                        </h2>
+                        <div className={styles.copy}>
+                            {variant === "default" ? (
+                                <Image
+                                    src="/images/dti-logo-cta.png"
+                                    alt="DTI"
+                                    width={171}
+                                    height={50}
+                                    className={styles.dtiLogo}
+                                />
+                            ) : null}
+                            <h2 id={`${id}-title`} className={styles.title}>
+                                <span className={styles.highlight}>
+                                    {highlight}
+                                </span>{" "}
+                                {title}
+                            </h2>
+                        </div>
 
                         <div className={styles.actions}>
-                            <a href={primaryHref} className={styles.primaryButton}>
-                                {primaryLabel}
-                                <span className={styles.buttonIcon} aria-hidden="true">
-                                    {variant === "default" ? <AccountIcon /> : <ArrowUpRightIcon />}
-                                </span>
-                            </a>
+                            {primaryLabel === "Fale com um especialista" ? (
+                                <SpecialistContactButton className={styles.primaryButton}>
+                                    {primaryLabel}
+                                    <span className={styles.buttonIcon} aria-hidden="true">
+                                        {variant === "default" ? <AccountIcon /> : <ArrowUpRightIcon />}
+                                    </span>
+                                </SpecialistContactButton>
+                            ) : (
+                                <a href={primaryHref} className={styles.primaryButton}>
+                                    {primaryLabel}
+                                    <span className={styles.buttonIcon} aria-hidden="true">
+                                        {variant === "default" ? <AccountIcon /> : <ArrowUpRightIcon />}
+                                    </span>
+                                </a>
+                            )}
 
                             <a href={secondaryHref} className={styles.secondaryButton}>
                                 {secondaryLabel}
@@ -116,14 +128,24 @@ export function CallToAction({
                     </div>
 
                     {variant === "default" ? (
-                        <Image
-                            src="/images/dti-smartphones-frame.png"
-                            alt=""
-                            width={555}
-                            height={786}
-                            className={styles.dtiPhonePreview}
-                            aria-hidden="true"
-                        />
+                        <>
+                            <Image
+                                src="/images/dti-smartphones-frame.png"
+                                alt=""
+                                width={555}
+                                height={786}
+                                className={`${styles.dtiPhonePreview} ${styles.defaultPhonePreview}`}
+                                aria-hidden="true"
+                            />
+                            <Image
+                                src="/images/dti-smartphone-compact.png"
+                                alt=""
+                                width={383}
+                                height={785}
+                                className={`${styles.dtiPhonePreview} ${styles.compactPhonePreview}`}
+                                aria-hidden="true"
+                            />
+                        </>
                     ) : null}
 
                     {showPixels && (

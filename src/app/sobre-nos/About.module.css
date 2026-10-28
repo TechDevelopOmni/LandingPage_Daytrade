@@ -8,15 +8,15 @@
   background: #ffffff;
 }
 
-.heroContent,
 .contentGrid,
 .principlesGrid {
   width: 100%;
-  max-width: 1366px;
+  max-width: none;
   margin: 0 auto;
 }
 
 .heroContent {
+  width: 100%;
   max-width: 980px;
   text-align: center;
 }
@@ -78,6 +78,8 @@
   padding: 10px 17px;
   border: 1px solid #141414;
   border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.2;

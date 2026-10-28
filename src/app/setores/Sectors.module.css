@@ -8,7 +8,7 @@
 .sectorLinks a:hover { border-color: #1e78a7; background: #e3f1f8; }
 .sectorLinks a:focus-visible { outline: 2px solid #1e78a7; outline-offset: 4px; }
 .sectorLinks span { color: #1e78a7; }
-.sector { --accent: #1e78a7; --tint: #e3f1f8; max-width: 1288px; margin: 0 auto; padding: 72px 24px; scroll-margin-top: 24px; }
+.sector { --accent: #1e78a7; --tint: #e3f1f8; width: 100%; max-width: none; margin: 0 auto; padding: 72px 24px; scroll-margin-top: 24px; }
 .sector + .sector { border-top: 1px solid #e1e8ec; }
 .mint { --accent: #218574; --tint: #e2f2ef; }
 .blue { --accent: #1e78a7; --tint: #e3f1f8; }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SpecialistContactButton } from "../../contact/SpecialistContact";
 import { Navbar } from "../../layout/Navbar";
 import { siteContent } from "../../../data/home";
 import styles from "./Hero.module.css";
@@ -77,9 +78,8 @@ export function Hero() {
             {siteContent.hero.description}
           </p>
           <div className={styles.cta}>
-            <a
+            <SpecialistContactButton
               className={styles.button}
-              href={siteContent.hero.ctaHref}
             >
               <span className={styles.icon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -122,7 +122,7 @@ export function Hero() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </span>
-            </a>
+            </SpecialistContactButton>
             <span className={styles.ctaNote}>
               {siteContent.hero.ctaNote}
             </span>

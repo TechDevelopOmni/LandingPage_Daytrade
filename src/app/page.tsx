@@ -17,8 +17,8 @@ export default function Home() {
         <Features />
         <div className={styles.sectionDivider} aria-hidden="true" />
         <Process />
-        <CallToAction />
         <Blog />
+        <CallToAction />
         <FAQ />
       </main>
       <Footer />

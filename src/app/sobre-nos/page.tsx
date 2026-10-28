@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SpecialistContactButton } from "../../components/contact/SpecialistContact";
 import { CallToAction } from "../../components/sections/CTA/cta";
 import { Footer } from "../../components/layout/Footer";
 import { Navbar } from "../../components/layout/Navbar";
@@ -115,9 +116,9 @@ export default function AboutPage() {
               Aproximamos estratégia, contexto e soluções para apoiar empresas em decisões que movimentam o futuro.
             </p>
             <div className={styles.heroActions}>
-              <Link className={styles.primaryAction} href="/#faq">
+              <SpecialistContactButton className={styles.primaryAction}>
                 Fale com um especialista
-              </Link>
+              </SpecialistContactButton>
               <a className={styles.secondaryAction} href="#nossa-forma-de-atuar">
                 Conheça nossa forma de atuar
               </a>

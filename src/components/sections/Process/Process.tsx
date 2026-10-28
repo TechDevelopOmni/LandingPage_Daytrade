@@ -1,4 +1,4 @@
-
+import { SpecialistContactButton } from "../../contact/SpecialistContact";
 import styles from "./Process.module.css";
 
 const steps = [
@@ -100,6 +100,10 @@ export function Process() {
               ))}
             </ol>
           </div>
+
+          <SpecialistContactButton className={styles.specialistButton}>
+            Fale com um especialista
+          </SpecialistContactButton>
         </div>
       </div>
     </section>
