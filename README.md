@@ -2,6 +2,34 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Envio do formulário Seja Cliente
+
+Copie `.env.example` para `.env.local` e configure `N8N_LEAD_WEBHOOK_URL`.
+No ambiente de hospedagem, configure essa mesma variável e reinicie ou publique novamente a aplicação.
+Ela é usada apenas no servidor; não adicione o prefixo `NEXT_PUBLIC_`.
+
+O formulário envia os cinco campos para `POST /api/leads`. Essa rota valida os dados,
+remove a formatação de CNPJ e telefone e monta o JSON enviado ao webhook do n8n.
+Os valores fixos de empresa (`001`/`Daytrade`), produto (`10`/`Antecipação de Recebíveis`)
+e campanha (`1001`/`Google Ads`) ficam em `src/app/api/leads/route.ts`.
+A campanha é fixa; não é inferida de parâmetros da URL.
+
+O formulário só confirma o envio após uma resposta HTTP de sucesso do n8n.
+Erros de validação, conexão ou do webhook permitem corrigir ou tentar novamente,
+mantendo os dados preenchidos. O envio tem limite de espera de 15 segundos e não faz tentativas automáticas.
+
+### Leads2b
+
+O snippet do Leads2b é carregado uma vez no layout global, com a configuração do token
+antes do script externo. O formulário possui o ID `seja-cliente` e os campos têm IDs
+e rótulos explícitos para a captura pelo snippet. O envio para `/api/leads` e n8n continua ativo.
+
+Na integração de leads do Leads2b, habilite a captura/conversão de formulários para esse token.
+Apenas o rastreamento de visitas (`formTracking`) não habilita a captura (`formConversion`).
+Se usar uma configuração específica, associe o ID `seja-cliente` à URL publicada do site.
+O recebimento no Leads2b deve ser conferido no painel da plataforma; a mensagem de sucesso
+do formulário confirma a resposta do n8n.
+
 First, run the development server:
 
 ```bash

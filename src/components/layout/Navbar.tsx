@@ -18,6 +18,9 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isClientModalOpen, setIsClientModalOpen] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const submissionInProgressRef = useRef(false);
   const router = useRouter();
   const pathname = usePathname();
   const isLight = variant === "light";
@@ -48,7 +51,10 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
   };
 
   const openClientModal = () => {
-    setIsFormSubmitted(false);
+    if (!submissionInProgressRef.current) {
+      setIsFormSubmitted(false);
+      setFormError(null);
+    }
     setIsOpen(false);
     setIsClientModalOpen(true);
   };
@@ -57,9 +63,46 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
     setIsClientModalOpen(false);
   };
 
-  const submitClientForm = (event: FormEvent<HTMLFormElement>) => {
+  const submitClientForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsFormSubmitted(true);
+
+    if (submissionInProgressRef.current || isFormSubmitted) {
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    submissionInProgressRef.current = true;
+    setIsSubmitting(true);
+    setFormError(null);
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: formData.get("name"),
+          razaoSocial: formData.get("company"),
+          cnpj: formData.get("cnpj"),
+          telefone: formData.get("phone"),
+          email: formData.get("email"),
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || result.success !== true) {
+        setFormError(result.error || "Não foi possível confirmar o envio. Tente novamente em instantes.");
+        return;
+      }
+
+      form.reset();
+      setIsFormSubmitted(true);
+    } catch {
+      setFormError("Não foi possível confirmar o envio. Verifique sua conexão e tente novamente.");
+    } finally {
+      submissionInProgressRef.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   const goToTop = () => {
@@ -140,7 +183,7 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
 
       const focusable = Array.from(
         clientModalRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? [],
-      );
+      ).filter((element) => !element.matches(":disabled"));
 
       if (focusable.length === 0) {
         return;
@@ -189,9 +232,9 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
               description:
                 "Encontre caminhos financeiros alinhados aos desafios do seu mercado.",
               items: [
-                { label: "Indústria", href: "/setores/industria" },
-                { label: "Construtora", href: "/setores/construtora" },
-                { label: "Agronegócio", href: "/setores/agronegocio" },
+                { label: "Agro", href: "/setores#agronegocio" },
+                { label: "Indústria", href: "/setores#industria" },
+                { label: "Construtora", href: "/setores#construtora" },
               ],
             }
           : {
@@ -283,6 +326,14 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
             </div>
           </div>
         </div>
+      );
+    }
+
+    if (item.label === "Setores") {
+      return (
+        <Link href="/setores" className={linkClass} onClick={showNavigationFeedback}>
+          {item.label}
+        </Link>
       );
     }
 
@@ -503,22 +554,58 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
               Conte-nos um pouco sobre a sua empresa. Nossa equipe entrará em contato para entender o melhor caminho para você.
             </p>
 
-            <form className="mt-7 grid gap-4" onSubmit={submitClientForm}>
-              <label className="grid gap-1.5 text-sm font-medium text-zinc-800">
-                Nome completo
-                <input
-                  ref={clientNameInputRef}
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  required
-                  className={formInputClass}
-                />
-              </label>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="grid gap-1.5 text-sm font-medium text-zinc-800">
-                  E-mail corporativo
+            <form id="seja-cliente" className="mt-7 grid gap-4" onSubmit={submitClientForm} aria-busy={isSubmitting}>
+              <fieldset className="contents" disabled={isSubmitting || isFormSubmitted}>
+                <label htmlFor="client-name" className="grid gap-1.5 text-sm font-medium text-zinc-800">
+                  Nome
                   <input
+                    ref={clientNameInputRef}
+                    id="client-name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    required
+                    className={formInputClass}
+                  />
+                </label>
+                <label htmlFor="client-company" className="grid gap-1.5 text-sm font-medium text-zinc-800">
+                  Razão Social
+                  <input
+                    id="client-company"
+                    name="company"
+                    type="text"
+                    autoComplete="organization"
+                    required
+                    className={formInputClass}
+                  />
+                </label>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label htmlFor="client-cnpj" className="grid gap-1.5 text-sm font-medium text-zinc-800">
+                    CNPJ
+                    <input
+                      id="client-cnpj"
+                      name="cnpj"
+                      type="text"
+                      required
+                      className={formInputClass}
+                    />
+                  </label>
+                  <label htmlFor="client-phone" className="grid gap-1.5 text-sm font-medium text-zinc-800">
+                    Telefone
+                    <input
+                      id="client-phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      required
+                      className={formInputClass}
+                    />
+                  </label>
+                </div>
+                <label htmlFor="client-email" className="grid gap-1.5 text-sm font-medium text-zinc-800">
+                  E-mail
+                  <input
+                    id="client-email"
                     name="email"
                     type="email"
                     autoComplete="email"
@@ -526,35 +613,14 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
                     className={formInputClass}
                   />
                 </label>
-                <label className="grid gap-1.5 text-sm font-medium text-zinc-800">
-                  Telefone
-                  <input
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    required
-                    className={formInputClass}
-                  />
-                </label>
-              </div>
-              <label className="grid gap-1.5 text-sm font-medium text-zinc-800">
-                Empresa
-                <input
-                  name="company"
-                  type="text"
-                  autoComplete="organization"
-                  required
-                  className={formInputClass}
-                />
-              </label>
-              <label className="grid gap-1.5 text-sm font-medium text-zinc-800">
-                Como podemos ajudar?
-                <textarea
-                  name="message"
-                  rows={3}
-                  className={`${formInputClass} resize-y`}
-                />
-              </label>
+
+              </fieldset>
+
+              {formError ? (
+                <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">
+                  {formError}
+                </p>
+              ) : null}
 
               {isFormSubmitted ? (
                 <p className="rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-800" role="status">
@@ -564,9 +630,10 @@ export function Navbar({ variant = "dark" }: NavbarProps) {
 
               <button
                 type="submit"
-                className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-[#00213d] px-5 text-sm font-medium text-white transition hover:bg-[#00345f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00213d]"
+                disabled={isSubmitting || isFormSubmitted}
+                className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-[#00213d] px-5 text-sm font-medium text-white transition hover:bg-[#00345f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00213d] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Enviar solicitação
+                {isSubmitting ? "Enviando…" : isFormSubmitted ? "Solicitação enviada" : "Enviar solicitação"}
               </button>
             </form>
           </div>
