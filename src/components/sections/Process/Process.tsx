@@ -55,19 +55,25 @@ export function Process() {
       aria-labelledby="process-title"
     >
       <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <h2 id="process-title" className={styles.sectionTitle}>
+            Gerando oportunidades em poucos passos.
+          </h2>
+
+          <p className={styles.description}>
+            Uma jornada simples, com acompanhamento especializado em cada etapa.
+          </p>
+        </div>
+
         <div className={styles.content}>
           <div className={styles.intro}>
             <span className={styles.eyebrow}>
               Como Funciona
             </span>
 
-            <h2 id="process-title" className={styles.title}>
+            <h3 className={styles.title}>
               Do primeiro contato ao crédito em sua conta.
-            </h2>
-
-            <p className={styles.description}>
-              Uma jornada simples, com acompanhamento especializado em cada etapa.
-            </p>
+            </h3>
           </div>
 
           <div className={styles.timeline}>

@@ -16,6 +16,21 @@
   padding: 0 68px;
 }
 
+.sectionHeader {
+  margin-bottom: clamp(56px, 6vw, 88px);
+  text-align: center;
+}
+
+.sectionTitle {
+  margin: 0 0 16px;
+  color: #11192c;
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  text-align: center;
+}
+
 .content {
   display: grid;
   grid-template-columns: 460px minmax(0, 1fr);
@@ -44,7 +59,7 @@
 
 .title {
   max-width: 460px;
-  margin: 0 0 24px;
+  margin: 0;
 
   color: #11192c;
   font-size: 38px;
@@ -54,8 +69,8 @@
 }
 
 .description {
-  max-width: 445px;
-  margin: 0;
+  max-width: 760px;
+  margin: 0 auto;
 
   color: #172d50;
   font-size: 16px;
@@ -240,8 +255,7 @@
     row-gap: 48px;
   }
 
-  .intro,
-  .description {
+  .intro {
     max-width: 620px;
   }
 }
